@@ -32,17 +32,16 @@ int main()
             std::cout << "Any x is solution" << '\n';
         }
     }
-    else if (D >= 0) {
-        x_1 = (-b + D) / (2.0 * a);
-        x_2 = (-b - D) / (2.0 * a);
-        if (is_equal(x_1, x_2)) {
-            std::cout << std::setprecision(3) << std::fixed << "x is " << x_1 << '\n';
-        }
-        else {
-            std::cout << std::setprecision(3) << std::fixed << "x1 is " << x_1 << '\n' << "x2 is " << x_2 << '\n';
-        }
+    x_1 = (-b + sqrt(D)) / (2.0 * a);
+    x_2 = (-b - sqrt(D)) / (2.0 * a);
+    if (is_equal(D, 0)) {
+        std::cout << std::setprecision(3) << std::fixed << "x is " << x_1 << '\n';
     }
-    else if (D < 0) {
+    else if (D > 0) {
+        std::cout << std::setprecision(3) << std::fixed << "x1 is " << x_1 << '\n' << "x2 is " << x_2 << '\n';
+        
+    }
+    else {
         std::cout << "Solution doesn't exist" << '\n';
     }
     system("pause");
