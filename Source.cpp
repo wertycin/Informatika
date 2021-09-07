@@ -20,7 +20,7 @@ int main() {
 
     std::cout.unsetf(std::ios::dec);
     std::cout.setf(std::ios::hex);
-    std::cout << "Price:" << "..........." << std::setw(8) << std::setfill('0') << temperature << std::endl;
+    std::cout << "Price:" << "..........." << std::setw(8) << std::setfill('0') << std::uppercase << temperature << std::endl;
 
     std::cout << "Has cash - back:" << std::setw(9) << std::setfill('.') << std::boolalpha << std::fixed << hasCashback << '\n';
 
