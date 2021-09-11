@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 #include <vector>
 int main()
@@ -8,8 +8,10 @@ int main()
     std::getline(std::cin, s);
     for (auto i = 0U; i < s.size(); ++i) {
         if (s[i] == ' ') {
-            v.push_back(word);
-            word = "";
+            if (word != "") {
+                v.push_back(word);
+                word = "";
+            }
         }
         else if (s[i] == ',' || s[i] == '.' || s[i] == '?') {
             v.push_back(word);
