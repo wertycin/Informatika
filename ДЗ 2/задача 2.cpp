@@ -14,12 +14,9 @@ int main()
 	}
 	for (auto i = 0U; i < n; ++i)
 	{
-		for (auto j = i; j > 0U; --j)
+		for (auto j = i; j > 0U && v[j - 1] > v[j]; --j)
 		{
-			if (v[j - 1] > v[j])
-			{
-				std::swap(v[j - 1], v[j]);
-			}
+			std::swap(v[j - 1], v[j]);
 		}
 	}
 	
