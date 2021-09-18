@@ -1,6 +1,6 @@
 #include <iostream>
 
-int fibonacci(int); // îáúÿâëåíèå ôóíêöèè
+int fibonacci(int); // Ã®Ã¡ÃºÃ¿Ã¢Ã«Ã¥Ã­Ã¨Ã¥ Ã´Ã³Ã­ÃªÃ¶Ã¨Ã¨
 
 int main()
 {
@@ -12,7 +12,7 @@ int main()
 	system("pause");
 }
 
-int fibonacci(int n) // îïðåäåëåíèå ôóíêöèè
+int fibonacci(int n) // Ã®Ã¯Ã°Ã¥Ã¤Ã¥Ã«Ã¥Ã­Ã¨Ã¥ Ã´Ã³Ã­ÃªÃ¶Ã¨Ã¨
 {
 	return (n > 2) ? fibonacci(n - 1) + fibonacci(n - 2) : 1;
 }
