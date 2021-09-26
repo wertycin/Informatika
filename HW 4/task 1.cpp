@@ -1,23 +1,20 @@
 #include <iostream>
 #include <string>
 #include <cmath>
-struct Roman_rulers // структура "Правители Древнего Рима"
+struct Roman_rulers
 {
-	int birth, death;
-	std::string name;
-
 	Roman_rulers(): name("Name"), birth(0), death(0) 
-	// имя, год рождения, год смерти, год начала правления, год окончания правления
+
 	{}
 
 	~Roman_rulers()
 	{}
 
-	Roman_rulers(const std::string& n, const int b, const int d) : // конструктор
+	Roman_rulers(const std::string& n, const int b, const int d) : 
 		name(n), birth(b), death(d)
 	{}
 
-	void print_years_of_life() // функция, которая выводит годы жизни правителя
+	void print_years_of_life() 
 	{
 		std::cout << name << " was born in ";
 		if (birth >= 0)
@@ -39,9 +36,13 @@ struct Roman_rulers // структура "Правители Древнего Рима"
 		}
 		std::cout << std::endl << std::endl;
 	}
+	
+	int birth, death;
+	std::string name;
+
 };
 
-void lived_at_the_same_time(Roman_rulers ruler_1, Roman_rulers ruler_2) // функция, отвечающая на вопрос, жили ли два правителя в одно и то же время
+void lived_at_the_same_time(Roman_rulers ruler_1, Roman_rulers ruler_2) 
 {
 	(ruler_1.birth < ruler_2.death && ruler_2.birth < ruler_1.death) ?
 		std::cout << ruler_1.name << " and " << ruler_2.name << " lived at the same time" << std::endl << std::endl
