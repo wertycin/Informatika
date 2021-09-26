@@ -18,7 +18,7 @@ struct Roman_rulers // структура "Правители Древнего �
 	{}
 };
 
-void lived_at_the_same_time(Roman_rulers ruler_1, Roman_rulers ruler_2) // ôóíêöèÿ, îòâå÷àþùàÿ íà âîïðîñ, æèëè ëè äâà ïðàâèòåëÿ â îäíî è òî æå âðåìÿ
+void lived_at_the_same_time(Roman_rulers ruler_1, Roman_rulers ruler_2) // функция, отвечающая на вопрос, жили ли два правителя в одно и то же время
 {
 	(ruler_1.birth < ruler_2.death & ruler_2.birth < ruler_1.death) ?
 		std::cout << ruler_1.name << " and " << ruler_2.name << " lived at the same time" << std::endl << std::endl
