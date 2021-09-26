@@ -1,31 +1,31 @@
 #include <iostream>
 #include <string>
 #include <cmath>
-struct Roman_rulers // структура "Правители Древнего Рима"
+struct Roman_rulers // СЃС‚СЂСѓРєС‚СѓСЂР° "РџСЂР°РІРёС‚РµР»Рё Р”СЂРµРІРЅРµРіРѕ Р РёРјР°"
 {
 	int birth, death;
 	std::string name;
 
 	Roman_rulers(): name("Name"), birth(0), death(0) 
-	// имя, год рождения, год смерти, год начала правления, год окончания правления
+	// РёРјСЏ, РіРѕРґ СЂРѕР¶РґРµРЅРёСЏ, РіРѕРґ СЃРјРµСЂС‚Рё, РіРѕРґ РЅР°С‡Р°Р»Р° РїСЂР°РІР»РµРЅРёСЏ, РіРѕРґ РѕРєРѕРЅС‡Р°РЅРёСЏ РїСЂР°РІР»РµРЅРёСЏ
 	{}
 
 	~Roman_rulers()
 	{}
 
-	Roman_rulers(const std::string& n, const int b, const int d) : // конструктор
+	Roman_rulers(const std::string& n, const int b, const int d) : // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 		name(n), birth(b), death(d)
 	{}
 };
 
-void lived_at_the_same_time(Roman_rulers ruler_1, Roman_rulers ruler_2) // функция, отвечающая на вопрос, жили ли два правителя в одно и то же время
+void lived_at_the_same_time(Roman_rulers ruler_1, Roman_rulers ruler_2) // ГґГіГ­ГЄГ¶ГЁГї, Г®ГІГўГҐГ·Г ГѕГ№Г Гї Г­Г  ГўГ®ГЇГ°Г®Г±, Г¦ГЁГ«ГЁ Г«ГЁ Г¤ГўГ  ГЇГ°Г ГўГЁГІГҐГ«Гї Гў Г®Г¤Г­Г® ГЁ ГІГ® Г¦ГҐ ГўГ°ГҐГ¬Гї
 {
 	(ruler_1.birth < ruler_2.death & ruler_2.birth < ruler_1.death) ?
 		std::cout << ruler_1.name << " and " << ruler_2.name << " lived at the same time" << std::endl << std::endl
 	: std::cout << ruler_1.name << " and " << ruler_2.name << " did't live at the same time" << std::endl << std::endl;
 }
 
-void print_years_of_life(Roman_rulers ruler) // функция, которая выводит годы жизни правителя
+void print_years_of_life(Roman_rulers ruler) // С„СѓРЅРєС†РёСЏ, РєРѕС‚РѕСЂР°СЏ РІС‹РІРѕРґРёС‚ РіРѕРґС‹ Р¶РёР·РЅРё РїСЂР°РІРёС‚РµР»СЏ
 {
 	std::cout << ruler.name << " was born in ";
 	if (ruler.birth >= 0)
