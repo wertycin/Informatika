@@ -29,9 +29,9 @@ struct Student
 	std::string name;
 	std::vector <Lesson*> lessons;
 
-	void add_lesson(Lesson* l, Student* s)
+	void add_lesson(Lesson* l)
 	{
-		(*l).add_student(s);
+		(*l).add_student(this);
 		lessons.push_back(l);
 	}
 };
@@ -42,9 +42,9 @@ int main()
 	Student s_1("student_1"), s_2("student_2");
 	Lesson l_1("lesson_1"), l_2("lesson_2");
 
-	s_1.add_lesson(&l_1, &s_1);
-	s_2.add_lesson(&l_1, &s_2);
-	s_2.add_lesson(&l_2, &s_2);
+	s_1.add_lesson(&l_1);
+	s_2.add_lesson(&l_1);
+	s_2.add_lesson(&l_2);
 
 	std::vector <Student> students_array = {s_1, s_2};
 	std::vector <Lesson> lessons_array = { l_1, l_2 };
