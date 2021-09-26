@@ -2,26 +2,11 @@
 #include <string>
 #include <vector>
 
-struct Lesson;
-
-struct Student
-{
-	Student(std::string n):
-		name(n)
-	{}
-
-	std::string name;
-	std::vector <Lesson*> lessons;
-
-	void add_lesson(Lesson* l)
-	{
-		lessons.push_back(l);
-	}
-};
+struct Student;
 
 struct Lesson
 {
-	Lesson(std::string n):
+	Lesson(std::string n) :
 		name(n)
 	{}
 
@@ -34,24 +19,43 @@ struct Lesson
 	}
 };
 
+
+struct Student
+{
+	Student(std::string n):
+		name(n)
+	{}
+
+	std::string name;
+	std::vector <Lesson*> lessons;
+
+	void add_lesson(Lesson* l, Student* s)
+	{
+		(*l).add_student(s);
+		lessons.push_back(l);
+	}
+};
+
+
 int main()
 {
 	Student s_1("student_1"), s_2("student_2");
 	Lesson l_1("lesson_1"), l_2("lesson_2");
 
-	s_1.add_lesson(&l_1);
-	s_2.add_lesson(&l_1);
-	s_2.add_lesson(&l_2);
+	s_1.add_lesson(&l_1, &s_1);
+	s_2.add_lesson(&l_1, &s_2);
+	s_2.add_lesson(&l_2, &s_2);
 
 	std::vector <Student> students_array = {s_1, s_2};
 	std::vector <Lesson> lessons_array = { l_1, l_2 };
 
-	for (auto i = 0U; i < students_array.size(); ++i)
+	for (auto i = 0U; i < lessons_array.size(); ++i)
 	{
-		for (auto j = 0U; j < students_array[i].lessons.size(); ++j)
+		std::cout << "students of lesson: " << lessons_array[i].name << std::endl;
+		for (auto j = 0U; j < lessons_array[i].students.size(); ++j)
 		{
 	/*		std::cout << (*s_1.lessons[i]).name;*/
-			std::cout << (*students_array[i].lessons[j]).name << std::endl;
+			std::cout << (*lessons_array[i].students[j]).name << std::endl;
 		}
 	}
 	/*int number_s;
