@@ -18,6 +18,12 @@ std::string To_call(const std::string& s)
 	return "Mr. Lisovsky is busy at the moment. Please call back later.";
 }
 
+std::string Riddle_by_Jacques_Fresco(const std::string& answer)
+{
+	if (answer != "1 liter") throw std::logic_error("Error: wrong answer\n");
+	return "Correct!";
+}
+
 int main()
 {
 	try
@@ -32,6 +38,12 @@ int main()
 		std::cin >> Phone_number;
 		std::cout << To_call(Phone_number) << '\n';
 
+		std::string answer;
+		std::cout << "There were 2 goats. How much?\n";
+		std::cin.ignore();
+		std::getline(std::cin, answer);
+		std::cout << Riddle_by_Jacques_Fresco(answer) << '\n';
+
 		unsigned int start_time = clock();
 		unsigned int end_time = clock();
 		while (true)
@@ -39,7 +51,6 @@ int main()
 			end_time = clock();
 			if (end_time - start_time > 3000) throw std::runtime_error("Error: the cycle takes more than 3 seconds\n");
 		}
-		
 	}
 	catch (const std::invalid_argument& exception)
 	{
@@ -49,13 +60,12 @@ int main()
 	{
 		std::cerr << exception.what() << std::endl;
 	}
-	catch (const std::runtime_error& exception)
+	catch (const std::logic_error& exception)
 	{
 		std::cerr << exception.what() << std::endl;
 	}
-}
-	catch (std::invalid_argument m_error)
+	catch (const std::runtime_error& exception)
 	{
-		std::cerr << m_error.what() << std::endl;
+		std::cerr << exception.what() << std::endl;
 	}
 }
