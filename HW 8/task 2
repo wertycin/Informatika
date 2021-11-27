@@ -1,15 +1,15 @@
 #include<stdexcept>
 #include<string>
 #include<iostream>
-
+#include<ctime>
 
 
 double Square_root(double x)
 {
-	if (x < 0) throw std::invalid_argument("Error: extracting the root of a negative number\n");
+	if (x < 0) throw std::domain_error("Error: extracting the root of a negative number\n");
 	return sqrt(x);
 }
-std::string To_call(std::string s)
+std::string To_call(const std::string& s)
 {
 	for (char c : s)
 	{
@@ -31,8 +31,29 @@ int main()
 		std::cout << "Enter the subscriber's phone number: ";
 		std::cin >> Phone_number;
 		std::cout << To_call(Phone_number) << '\n';
+
+		unsigned int start_time = clock();
+		unsigned int end_time = clock();
+		while (true)
+		{
+			end_time = clock();
+			if (end_time - start_time > 3000) throw std::runtime_error("Error: the cycle takes more than 3 seconds\n");
+		}
 		
 	}
+	catch (const std::invalid_argument& exception)
+	{
+		std::cerr << exception.what() << std::endl;
+	}
+	catch (const std::domain_error& exception)
+	{
+		std::cerr << exception.what() << std::endl;
+	}
+	catch (const std::runtime_error& exception)
+	{
+		std::cerr << exception.what() << std::endl;
+	}
+}
 	catch (std::invalid_argument m_error)
 	{
 		std::cerr << m_error.what() << std::endl;
