@@ -1,0 +1,40 @@
+#include<stdexcept>
+#include<string>
+#include<iostream>
+
+
+
+double Square_root(double x)
+{
+	if (x < 0) throw std::invalid_argument("Error: extracting the root of a negative number\n");
+	return sqrt(x);
+}
+std::string To_call(std::string s)
+{
+	for (char c : s)
+	{
+		if (c > 57 || c < 48) throw std::invalid_argument("Error: invalid phone number\n");
+	}
+	return "Mr. Lisovsky is busy at the moment. Please call back later.";
+}
+
+int main()
+{
+	try
+	{
+		double x;
+		std::cout << "Enter x to get the square root of x: x = ";
+		std::cin >> x;
+		std::cout << Square_root(x) << '\n';
+
+		std::string Phone_number;
+		std::cout << "Enter the subscriber's phone number: ";
+		std::cin >> Phone_number;
+		std::cout << To_call(Phone_number) << '\n';
+		
+	}
+	catch (std::invalid_argument m_error)
+	{
+		std::cerr << m_error.what() << std::endl;
+	}
+}
