@@ -42,16 +42,17 @@ Numbers::Numbers(const std::vector <int>& v) : m_length(v.size()), m_vector(v)
 Numbers::Numbers(const int* array, int array_size) : m_length(array_size)
 {
 	m_data = new int[m_length];
+	m_vector.resize(m_length);
 	for (auto i = 0U; i < m_length; ++i)
 	{
 		m_data[i] = array[i];
-		m_vector.push_back(array[i]);
+		m_vector[i] = array[i];
 	}
 };
 
 Numbers:: ~Numbers()
 {
-	delete m_data;
+	delete [] m_data;
 }
 
 Numbers& Numbers::operator=(const Numbers& other)
@@ -78,9 +79,8 @@ Numbers& Numbers::operator=(Numbers&& other)
 	return *this;
 }
 
-Numbers::Numbers(Numbers&& other) : m_length(other.m_length), m_data(other.m_data)
+Numbers::Numbers(Numbers&& other) : m_length(other.m_length), m_data(other.m_data), m_vector(std::move(other.m_vector))
 {
-	m_vector = std::move(other.m_vector);
 	other.m_data = nullptr;
 	other.m_length = 0;
 }
