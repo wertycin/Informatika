@@ -2,7 +2,7 @@
 #include<string>
 #include<iostream>
 #include<ctime>
-
+#include<vector>
 
 double Square_root(double x)
 {
@@ -13,7 +13,7 @@ std::string To_call(const std::string& s)
 {
 	for (char c : s)
 	{
-		if (c > 57 || c < 48) throw std::invalid_argument("Error: invalid phone number\n");
+		if (c > '9' || c < '0') throw std::invalid_argument("Error: invalid phone number\n");
 	}
 	return "Mr. Lisovsky is busy at the moment. Please call back later.";
 }
@@ -24,6 +24,11 @@ std::string Riddle_by_Jacques_Fresco(const std::string& answer)
 	return "Correct!";
 }
 
+int Print_elem_from_vector(const std::vector <int> vector, int n)
+{
+	if (n > vector.size() - 1) throw std::out_of_range("Error: out of bounds of array\n");
+	return vector[n];
+}
 int main()
 {
 	try
@@ -43,6 +48,12 @@ int main()
 		std::cin.ignore();
 		std::getline(std::cin, answer);
 		std::cout << Riddle_by_Jacques_Fresco(answer) << '\n';
+
+		std::vector <int> v = { 0, 1, 2, 3 };
+		int n;
+		std::cout << "Enter number n: n = ";
+		std::cin >> n;
+		std::cout << Print_elem_from_vector(v, n) << '\n';
 
 		unsigned int start_time = clock();
 		unsigned int end_time = clock();
@@ -65,6 +76,10 @@ int main()
 		std::cerr << exception.what() << std::endl;
 	}
 	catch (const std::runtime_error& exception)
+	{
+		std::cerr << exception.what() << std::endl;
+	}
+	catch (const std::out_of_range& exception)
 	{
 		std::cerr << exception.what() << std::endl;
 	}
