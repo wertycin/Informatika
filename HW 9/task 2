@@ -1,0 +1,14 @@
+#include<iostream>
+template <typename T>
+	T* ptr(T arg)
+	{
+		return  new T(arg);
+	}
+
+int main()
+{
+	auto* m_ptr = ptr(1);
+	std::cout << typeid(*m_ptr).name() << std::endl;
+	delete m_ptr;
+	return 0;
+}
