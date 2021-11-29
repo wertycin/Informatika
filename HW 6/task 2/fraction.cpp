@@ -64,6 +64,7 @@ namespace Fraction
 		n *= b.m;
 		m *= b.n;
 		easy(n, m);
+		if (m == 0) throw std::invalid_argument("Error: division by zero!\n");
 		return *this;
 	}
 
