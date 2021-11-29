@@ -1,16 +1,18 @@
 #include<iostream>
-template <bool _Test, class _Ty = void>
+template <bool b, typename T = void>
 struct enable_if {};
 
-template <class _Ty>
-struct enable_if<true, _Ty>
-{ using type = _Ty; };
+template <typename T>
+struct enable_if<true, T>
+{
+	using type = T;
+};
 
-template <bool _Test, class _Ty = void>
-using enable_if_t = typename enable_if<_Test, _Ty>::type;
+template <bool b, typename T = void>
+using enable_if_t = typename enable_if<b, T>::type;
 
 int main()
 {
-	std::cout << typeid(enable_if<true, int>::type).name() << std::endl;
+	std::cout << typeid(enable_if_t<true, int>).name() << std::endl;
 	return 0;
 }
