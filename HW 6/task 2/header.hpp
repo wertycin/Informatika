@@ -5,7 +5,7 @@
 
 namespace Fraction
 {
-	int lcm(int x, int y);
+	void easy(int& n, int& m);
 
 	class fraction
 	{
@@ -14,7 +14,8 @@ namespace Fraction
 		
 		fraction(int a, int b = 1) : n(a), m(b)
 		{
-				if (b == 0) throw std::domain_error("Error: division by zero!\n");
+			if (b == 0) throw std::domain_error("Error: division by zero!\n");
+			easy(a, b);
 		};
 
 		fraction operator+=(const fraction& b);
