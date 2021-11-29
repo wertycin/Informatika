@@ -1,10 +1,10 @@
 #pragma once
 #include<iostream>
 #include<stdexcept>
+#include<numeric>
 
 namespace Fraction
 {
-	unsigned int gcd(unsigned int x, unsigned int y);
 	int lcm(int x, int y);
 
 	class fraction
@@ -14,14 +14,7 @@ namespace Fraction
 		
 		fraction(int a, int b = 1) : n(a), m(b)
 		{
-			try
-			{
 				if (b == 0) throw std::domain_error("Error: division by zero!\n");
-			}
-			catch (const std::domain_error& exception)
-			{
-				std::cerr << exception.what() << std::endl;
-			}
 		};
 
 		fraction operator+=(const fraction& b);
@@ -30,8 +23,7 @@ namespace Fraction
 		fraction operator/=(const fraction& b);
 		friend std::ostream& operator<<(std::ostream& out, const fraction& x);
 		friend std::istream& operator>>(std::istream& x, fraction& a);
-
-		private:
+	private:
 		int n, m;
 	};
 
