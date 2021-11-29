@@ -3,18 +3,10 @@
 
 namespace Fraction
 {
-	unsigned int gcd(unsigned int x, unsigned int y)
-	{
-		if (x == y)
-			return x;
-		if (x > y)
-			return gcd(x - y, y);
-		return gcd(x, y - x);
-	}
 
 	int lcm(int x, int y)
 	{
-		return x / gcd(x, y) * y;
+		return x / std::gcd(x, y) * y;
 	}
 
 	std::ostream& operator<<(std::ostream& out, const fraction& x)
@@ -22,8 +14,8 @@ namespace Fraction
 		if (x.n != 0)
 		{
 			int g = 1;
-			if (x.n > 0) g = gcd(x.n, x.m);
-			if (x.n < 0) g = gcd(-1 * x.n, x.m);
+			if (x.n > 0) g = std::gcd(x.n, x.m);
+			if (x.n < 0) g = std::gcd(-1 * x.n, x.m);
 			if (x.m != 1 && x.n % x.m != 0)
 			{
 				out << x.n / g << '/' << x.m / g;
@@ -42,23 +34,10 @@ namespace Fraction
 	{
 		char s;
 		x >> a.n >> s >> a.m;
-		if (s != '/')
-		{
-			std::cout << "Error! This is not a fraction!\n";
-		}
-		try
-		{
-			if (a.m == 0) throw std::invalid_argument("Error: division by zero!\n");
-			if (s != '/') throw std::domain_error("Error: This is not a fraction!\n");
-		}
-		catch (const std::domain_error& exception)
-		{
-			std::cerr << exception.what() << std::endl;
-		}
-		catch (const std::invalid_argument& exception)
-		{
-			std::cerr << exception.what() << std::endl;
-		}
+		if (a.m == 0) throw std::invalid_argument("Error: division by zero!\n");
+		if (s != '/') throw std::domain_error("Error: This is not a fraction!\n");
+		int g = std::gcd(a.n, a.m);
+		if (g != 1) { a.n = a.n / g; a.m = a.m / g; };
 		return x;
 	}
 
@@ -66,6 +45,8 @@ namespace Fraction
 	{
 		n = n * b.m + m * b.n;
 		m = m * b.m;
+		int g = std::gcd(n, m);
+		if (g != 1) { n = n / g; m = m / g; };
 		return *this;
 	}
 
@@ -73,6 +54,8 @@ namespace Fraction
 	{
 		n = n * b.m - m * b.n;
 		m = m * b.m;
+		int g = std::gcd(n, m);
+		if (g != 1) { n = n / g; m = m / g; };
 		return *this;
 	}
 
@@ -80,13 +63,17 @@ namespace Fraction
 	{
 		n *= b.n;
 		m *= b.m;
+		int g = std::gcd(n, m);
+		if (g != 1) { n = n / g; m = m / g; };
 		return *this;
 	}
 
 	fraction fraction::operator/=(const fraction& b)
 	{
 		n *= b.m;
-		m *= b.m;
+		m *= b.n;
+		int g = std::gcd(n, m);
+		if (g != 1) { n = n / g; m = m / g; };
 		return *this;
 	}
 
