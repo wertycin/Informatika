@@ -12,7 +12,7 @@ namespace Fraction
 	public:
 		fraction() : n(0), m(1) {};
 		
-		fraction(int a, int b) : n(a), m(b = 1)
+		fraction(int a, int b = 1) : n(a), m(b)
 		{
 			try
 			{
