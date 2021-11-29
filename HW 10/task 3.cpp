@@ -1,26 +1,24 @@
-#include<iostream>
+#include <iostream>
 
-
-template <typename function, typename...args>
-auto call(function f, args...a)
+template <typename F, typename ... A>
+void call(F function, A  ... args)
 {
-	return f(a...);
+	function(args...);
 }
 
-auto sum(double x, double y)
+void sum(int x, double y)
 {
-	 return x + y;
+	std::cout << "Summary of x and y from called function is: " << x + y;
 }
 
-auto max(double x, double y)
-{
-	return (x > y) ? x : y;
-}
 
 int main()
 {
-	std::cout << call(sum, 1, 2.0) << std::endl;
-	std::cout << call(max, 1.0, 2) << std::endl;
-	
+	double x, y;
+	std::cin >> x;
+	std::cin >> y;
+
+	call(sum, x, y);
+
 	return 0;
 }
