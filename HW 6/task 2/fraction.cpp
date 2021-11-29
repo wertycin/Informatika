@@ -4,31 +4,26 @@
 namespace Fraction
 {
 
-	int lcm(int x, int y)
+	void easy(int& n, int& m)
 	{
-		return x / std::gcd(x, y) * y;
-	}
+		int g = std::gcd(n, m);
+		n = n / g; m = m / g;
+		if (m < 0) { n = -n; m = -m; };
+	};
+	
 
 	std::ostream& operator<<(std::ostream& out, const fraction& x)
 	{
-		if (x.n != 0)
+		if (x.n % x.m != 0)
 		{
-			int g = 1;
-			if (x.n > 0) g = std::gcd(x.n, x.m);
-			if (x.n < 0) g = std::gcd(-1 * x.n, x.m);
-			if (x.m != 1 && x.n % x.m != 0)
-			{
-				out << x.n / g << '/' << x.m / g;
-				return out;
-			}
-			else
-			{
-				out << x.n / x.m;
-				return out;
-			}
+			out << x.n << '/' << x.m;
+			return out;
 		}
-		out << 0;
-		return out;
+		else
+		{
+			out << x.n / x.m;
+			return out;
+		}
 	}
 	std::istream& operator>>(std::istream& x, fraction& a)
 	{
@@ -36,8 +31,7 @@ namespace Fraction
 		x >> a.n >> s >> a.m;
 		if (a.m == 0) throw std::invalid_argument("Error: division by zero!\n");
 		if (s != '/') throw std::domain_error("Error: This is not a fraction!\n");
-		int g = std::gcd(a.n, a.m);
-		if (g != 1) { a.n = a.n / g; a.m = a.m / g; };
+		easy(a.n, a.m);
 		return x;
 	}
 
@@ -45,8 +39,7 @@ namespace Fraction
 	{
 		n = n * b.m + m * b.n;
 		m = m * b.m;
-		int g = std::gcd(n, m);
-		if (g != 1) { n = n / g; m = m / g; };
+		easy(n, m);
 		return *this;
 	}
 
@@ -54,8 +47,7 @@ namespace Fraction
 	{
 		n = n * b.m - m * b.n;
 		m = m * b.m;
-		int g = std::gcd(n, m);
-		if (g != 1) { n = n / g; m = m / g; };
+		easy(n, m);
 		return *this;
 	}
 
@@ -63,8 +55,7 @@ namespace Fraction
 	{
 		n *= b.n;
 		m *= b.m;
-		int g = std::gcd(n, m);
-		if (g != 1) { n = n / g; m = m / g; };
+		easy(n, m);
 		return *this;
 	}
 
@@ -72,8 +63,7 @@ namespace Fraction
 	{
 		n *= b.m;
 		m *= b.n;
-		int g = std::gcd(n, m);
-		if (g != 1) { n = n / g; m = m / g; };
+		easy(n, m);
 		return *this;
 	}
 
