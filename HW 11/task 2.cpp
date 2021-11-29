@@ -1,6 +1,6 @@
 #include<iostream>
 template<typename T>
-struct add_const { using type = T const; };
+struct add_const { using type = const T; };
 
 template<typename T>
 struct remove_const { using type = T; };
