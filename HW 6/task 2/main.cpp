@@ -1,6 +1,7 @@
 #include"header.hpp"
 
 using namespace Fraction;
+
 int main()
 {
 	try
