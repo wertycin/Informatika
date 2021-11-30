@@ -1,6 +1,6 @@
 #include<iostream>
 
-double e_n(double d)
+constexpr double e_n(double d)
 {
 	double e = 1;
 	double f = 1;
@@ -16,8 +16,8 @@ double e_n(double d)
 
 int main()
 {
-	double epsilon = 0.0000001;
-	const double x = e_n(epsilon);
+	constexpr double epsilon = 0.0000001;
+	constexpr double x = e_n(epsilon);
 	std::cout << x << std::endl;
 	return 0;
 }
