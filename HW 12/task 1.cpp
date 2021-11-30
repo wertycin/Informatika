@@ -1,28 +1,27 @@
 #include<iostream>
 
-template <int N>
-struct F
+template <int n, int k>
+struct C
 {
-	static inline const int value = N * F <N - 1>::value;
+	static inline const int value = C <n - 1, k>::value + C<n - 1, k - 1>::value;
 };
 
-template <>
-struct F <0>
+template <int n>
+struct C <n, 0>
 {
 	static inline const int value = 1;
 };
 
-template < int n >
-int F_v = F<n>::value;
-
-template <int n, int k>
-struct C
+template <int n>
+struct C <n, n>
 {
-	static inline const int value = F_v < n > / ( F_v < k > * F_v < n - k > );
+	static inline const int value = 1;
 };
+
 
 template < int n, int k >
 int C_v = C<n, k>::value;
+
 
 
 int main()
