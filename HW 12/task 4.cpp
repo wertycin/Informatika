@@ -1,14 +1,15 @@
+
 #include<iostream>
 #include<array>
 
 template <int n>
 constexpr int f()
 {
-	std::array <int, n> array{0};
+	std::array <int, n> array{ 0 };
 	int i = 0;
 	int m = 3;
 	array[0] = 2;
-	while (array[n - 1] == 0)
+	for (; array[n - 1] == 0; m+=2)
 	{
 		i = 0;
 		bool flag = true;
@@ -21,7 +22,6 @@ constexpr int f()
 			}
 		}
 		if (flag) { array[i] = m; }
-		m+=2;
 	}
 	return array[n - 1];
 }
