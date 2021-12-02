@@ -7,9 +7,8 @@ constexpr int f()
 {
 	std::array <int, n> array{ 0 };
 	int i = 0;
-	int m = 3;
 	array[0] = 2;
-	for (; array[n - 1] == 0; m+=2)
+	for (int m = 3; array[n - 1] == 0; m+=2)
 	{
 		i = 0;
 		bool flag = true;
