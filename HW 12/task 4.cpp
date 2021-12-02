@@ -11,12 +11,12 @@ constexpr int f()
 	while (array[n - 1] == 0)
 	{
 		i = 0;
-		bool flag = 1;
+		bool flag = true;
 		for (; array[i] != 0; ++i)
 		{
 			if (m % array[i] == 0)
 			{
-				flag = 0;
+				flag = false;
 				break;
 			}
 		}
